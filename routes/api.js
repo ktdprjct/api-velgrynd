@@ -126,6 +126,35 @@ const Promote = await new kc.Promote()
          	res.json(loghandler.error)
 })
 })
+router.get('/demote', async (req, res) => {
+            pp = req.query.pp,
+            nama = req.query.nama,
+	    namagc = req.query.namagc,
+	    ppgc = req.query.ppgc,
+            bg = req.query.bg,
+            member = req.query.member
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+    if (!namagc) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter namagc"})
+    if (!ppgc) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter ppgc"})
+    if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
+    if (!member) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter member"})
+const Demote = await new kc.Demote()
+    .setAvatar(pp)
+    .setUsername(nama)
+    .setGuildName(namagc)
+    .setGuildIcon(ppgc)
+    .setBackground(bg)
+    .setMemberCount(member)
+    .toAttachment();
+    
+ data = Demote.toBuffer();
+  await fs.writeFileSync(__path +'/database/demote.png', data)
+  res.sendFile(__path+'/database/demote.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 router.get('/gura', async (req, res) => {
             teks = req.query.teks
     if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
