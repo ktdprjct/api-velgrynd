@@ -155,6 +155,53 @@ const Demote = await new kc.Demote()
          	res.json(loghandler.error)
 })
 })
+router.get('/level', async (req, res) => {
+            pp = req.query.pp,
+            nama = req.query.nama,
+            bg = req.query.bg,
+            needxp = req.query.needxp,
+            currxp = req.query.currxp,
+            level = req.query.level,
+            rank = req.query.rank   
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+    if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
+    if (!needxp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter needxp"})
+    if (!currxp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter currxp"})
+    if (!level) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter level"})
+    if (!rank) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter rank"})
+    
+var level = await new ch.Rank()
+    .setAvatar(`${pp}`) 
+    .setUsername(`${nama}`) 
+    .setBg(`${bg}`)
+    .setNeedxp(`${needxp}`) 
+    .setCurrxp(`${currxp}`) 
+    .setLevel(`${level}`) 
+    .setRank(`${rank}`) 
+    .toAttachment();
+  data = level.toBuffer();
+  await fs.writeFileSync(__path +'/database/rank.png', data)
+  res.sendFile(__path +'/database/rank.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+
+router.get('/levelup', async (req, res, next) => {
+            pp = req.query.pp
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})       
+var levelup = await new ch.Up()
+    .setAvatar(`${pp}`)
+    .toAttachment();
+  data = levelup.toBuffer();
+  await fs.writeFileSync(__path +'/database/sup.png', data)
+  res.sendFile(__path +'/database/sup.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 router.get('/gura', async (req, res) => {
             teks = req.query.teks
     if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
