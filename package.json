@@ -1,5 +1,5 @@
 {
-  "name": "api-velgrynd",
+  "name": "api-xfar",
   "version": "1.1.0",
   "description": "My Rest Api",
   "main": "nodemon index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ultimareall/api-velgrynd.git"
+    "url": "git+https://github.com/xfar05/api-xfar.git"
   },
   "keywords": [
     "simple",
@@ -19,10 +19,11 @@
   "author": "Ultima",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ultimareall/api-velgrynd/issues"
+    "url": "https://github.com/ultimareall/api-xfar/issues"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "canvas-hikki": "github:hardianto-cpu/canvas-hikki",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.10",
     "child_process": "^1.0.2",
@@ -49,5 +50,5 @@
     "urlencode": "^1.1.0",
     "util": "^0.12.4"
   },
-  "homepage": "https://github.com/ultimareall/api-velgrynd#readme"
+  "homepage": "https://github.com/xfar05/api-xfar#readme"
 }
