@@ -162,14 +162,14 @@ router.get('/level', async (req, res) => {
             needxp = req.query.needxp,
             currxp = req.query.currxp,
             level = req.query.level,
-            rank = req.query.rank   
+            logorank = req.query.rank   
     if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
     if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
     if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
     if (!needxp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter needxp"})
     if (!currxp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter currxp"})
     if (!level) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter level"})
-    if (!rank) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter rank"})
+    if (!logorank) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter logorank"})
     
 var level = await new ch.Rank()
     .setAvatar(`${pp}`) 
@@ -178,7 +178,7 @@ var level = await new ch.Rank()
     .setNeedxp(`${needxp}`) 
     .setCurrxp(`${currxp}`) 
     .setLevel(`${level}`) 
-    .setRank(`${rank}`) 
+    .setRank(`${logorank}`) 
     .toAttachment();
   data = level.toBuffer();
   await fs.writeFileSync(__path +'/database/rank.png', data)
