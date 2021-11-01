@@ -14,6 +14,7 @@ let router  = express.Router();
 let hxz = require('hxz-api')
 let nhentai = require('nhentai-js');
 let NanaAPI = require('nana-api')
+let ch = require('canvas-hikki')
 let nana = new NanaAPI()
 let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl } = require('../lib/index') 
 let options = require(__path + '/lib/options.js');
@@ -43,7 +44,63 @@ loghandler = {
         message: 'An internal error occurred. Please report via WhatsApp wa.me/62895619083555'
     }
 }
+router.get('/welkom', async (req, res) => {
+            nama = req.query.nama,
+            pp = req.query.pp,
+            bg = req.query.bg,           
+            bcolor = req.query.bcolor
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
+    if (!bcolor) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bcolor"})
+    
+    
+let Welcome = await new ch.Welcome2()
+.setName(`${nama}`)
+.setBackgroundColor(`#${bcolor}`) 
+.setStrokeColor("#ffffff")  
+.setTextColor("#ffffff") 
+.setShadow(true)
+.setAvatar(`${pp}`)
+.setBackground(`${bg}`)
+.toAttachment()
+    
+ data = Welcome.toBuffer();
+  await fs.writeFileSync(__path +'/database/welkom2.png', data)
+  res.sendFile(__path+'/database/welkom2.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 
+
+router.get('/goodbye', async (req, res) => {
+            nama = req.query.nama,
+            pp = req.query.pp,
+            bg = req.query.bg,           
+            bcolor = req.query.bcolor
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
+    if (!bcolor) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bcolor"})
+    
+let Goodbye = await new ch.Goodbye2()
+.setName(`${nama}`)
+.setBackgroundColor(`#${bcolor}`) 
+.setStrokeColor("#ffffff")  
+.setTextColor("#ffffff") 
+.setShadow(true)
+.setAvatar(`${pp}`)
+.setBackground(`${bg}`)
+.toAttachment()
+    
+ data = Goodbye.toBuffer();
+  await fs.writeFileSync(__path +'/database/goodbye2.png', data)
+  res.sendFile(__path+'/database/goodbye2.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
      // Downloader
     router.get('/tiktok', async(req, res) => {
 	      let url = req.query.url
