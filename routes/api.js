@@ -96,7 +96,19 @@ let Goodbye = await new ch.Goodbye2()
          	res.json(loghandler.error)
 })
 })
-
+router.get('/gura', async (req, res) => {
+            teks = req.query.teks
+    if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
+var gura = await new ch.Gura()
+    .setName(teks) 
+    .toAttachment();
+  data = gura.toBuffer();
+  await fs.writeFileSync(__path +'/database/Gura.png', data)
+  res.sendFile(__path +'/database/Gura.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 
      // Downloader
     router.get('/tiktok', async(req, res) => {
