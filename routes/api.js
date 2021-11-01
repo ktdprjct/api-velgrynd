@@ -162,7 +162,7 @@ router.get('/level', async (req, res) => {
             needxp = req.query.needxp,
             currxp = req.query.currxp,
             level = req.query.level,
-            logorank = req.query.rank   
+            logorank = req.query.logorank   
     if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
     if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
     if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
