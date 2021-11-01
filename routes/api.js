@@ -45,24 +45,24 @@ loghandler = {
     }
 }
 router.get('/welkom', async (req, res) => {
-            nama = req.query.nama,
             pp = req.query.pp,
-            bg = req.query.bg,           
-            bcolor = req.query.bcolor
-    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+            nama = req.query.nama,
+            bg = req.query.bg,    
+	    namagc = req.query.namagc,
+            member = req.query.member
     if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
     if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
-    if (!bcolor) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bcolor"})
+    if (!namagc) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter namagc"})
+    if (!member) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter member"})
     
     
 let Welcome = await new ch.Welcome2()
-.setName(`${nama}`)
-.setBackgroundColor(`#${bcolor}`) 
-.setStrokeColor("#ffffff")  
-.setTextColor("#ffffff") 
-.setShadow(true)
-.setAvatar(`${pp}`)
-.setBackground(`${bg}`)
+.setAvatar(pp)
+.setUsername(nama)
+.setBg(bg)
+.setGroupname(namagc)
+.setMember(member)
 .toAttachment()
     
  data = Welcome.toBuffer();
