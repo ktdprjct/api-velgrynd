@@ -281,7 +281,7 @@ router.get('/gfx5', async (req, res) => {
     if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
    
 var image = await new ch.Gfx5()
-    .setText1(`${text}`) 
+    .setText(`${text}`) 
     .toAttachment();
     
   data = image.toBuffer();
