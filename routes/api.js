@@ -6,7 +6,7 @@ let zahirr = db.get("zahirr");
 } catch (e) {
 	console.log('')  
 }
-let creator = "Velgrynd"
+let creator = "xfar"
 let axios = require('axios')
 let fs = require('fs')
 let fetch = require('node-fetch');
@@ -40,7 +40,7 @@ loghandler = {
     error: {
         status: 404,
         creator: `${creator}`,
-        message: 'An internal error occurred. Please report via WhatsApp wa.me/6288286421519'
+        message: 'An internal error occurred. Please report via WhatsApp wa.me/62895619083555'
     }
 }
 
@@ -53,7 +53,6 @@ loghandler = {
 		  res.json({
 			  status: 200,
 			  creator: `${creator}`,
-              note: 'Jangan Di Tembak Bang',
               result
           })
 	   } catch(err) {
@@ -69,7 +68,6 @@ loghandler = {
 	     res.json({
 			  status: 200,
 			  creator: `${creator}`,
-              note: 'Jangan Di Tembak Bang',
               result
           })
 	    } catch(err) {
@@ -85,7 +83,6 @@ loghandler = {
 	     res.json({
 			  status: 200,
 			  creator: `${creator}`,
-              note: 'Jangan Di Tembak Bang',
               result
           })
 	    } catch(err) {
@@ -101,7 +98,6 @@ loghandler = {
 	     res.json({
 			  status: 200,
 			  creator: `${creator}`,
-              note: 'Jangan Di Tembak Bang',
               result
           })
 	    } catch(err) {
@@ -117,7 +113,6 @@ loghandler = {
 	     res.json({
 			  status: 200,
 			  creator: `${creator}`,
-              note: 'Jangan Di Tembak Bang',
               result
           })
 	    } catch(err) {
@@ -133,7 +128,6 @@ loghandler = {
 	     res.json({
 			  status: 200,
 			  creator: `${creator}`,
-              note: 'Jangan Di Tembak Bang',
               result
           })
 	    } catch(err) {
@@ -150,7 +144,6 @@ loghandler = {
 	      res.json({ 
 		       status: 200,
 		       creator: `${creator}`,
-               note: 'Jangan Di Tembak Bang',
                result 
            })
       })
@@ -162,7 +155,6 @@ loghandler = {
 	      res.json({ 
 		       status: 200,
 		       creator: `${creator}`,
-               note: 'Jangan Di Tembak Bang',
                result 
            })
         .catch(e => {
@@ -178,7 +170,6 @@ loghandler = {
              res.json({
                   status: 200,
                   creator: `${creator}`,
-                  note: 'Jangan Di Tembak Bang',
                   result
              })
             .catch(e => {
@@ -192,7 +183,6 @@ loghandler = {
 		    res.json({
                  status: 200,
                  creator: `${creator}`,
-                 note: 'Jangan Di Tembak Bang',
                  result
             })
        })
@@ -202,7 +192,6 @@ loghandler = {
              res.json({
                   status: 200,
                   creator: `${creator}`,
-                  note: 'Jangan Di Tembak Bang',
                   result
               })
          })
