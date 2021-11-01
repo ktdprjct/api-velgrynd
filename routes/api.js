@@ -66,8 +66,36 @@ let Welcome = await new ch.Welcome2()
 .toAttachment()
     
  data = Welcome.toBuffer();
-  await fs.writeFileSync(__path +'/database/welkom2.png', data)
-  res.sendFile(__path+'/database/welkom2.png')
+  await fs.writeFileSync(__path +'/database/welcome.png', data)
+  res.sendFile(__path+'/database/welcome.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+router.get('/goodbye', async (req, res) => {
+            pp = req.query.pp,
+            nama = req.query.nama,
+            bg = req.query.bg,    
+	    namagc = req.query.namagc,
+            member = req.query.member
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+    if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
+    if (!namagc) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter namagc"})
+    if (!member) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter member"})
+    
+    
+let Goodbye = await new ch.Goodbye2()
+.setAvatar(pp)
+.setUsername(nama)
+.setBg(bg)
+.setGroupname(namagc)
+.setMember(member)
+.toAttachment()
+    
+ data = Goodbye.toBuffer();
+  await fs.writeFileSync(__path +'/database/goodbye.png', data)
+  res.sendFile(__path+'/database/goodbye.png')
   .catch(e => {
          	res.json(loghandler.error)
 })
