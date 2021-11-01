@@ -76,20 +76,16 @@ router.get('/goodbye', async (req, res) => {
             pp = req.query.pp,
             nama = req.query.nama,
             bg = req.query.bg,    
-	    namagc = req.query.namagc,
             member = req.query.member
     if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
     if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
     if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
-    if (!namagc) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter namagc"})
     if (!member) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter member"})
-    
     
 let Goodbye = await new ch.Goodbye2()
 .setAvatar(pp)
 .setUsername(nama)
 .setBg(bg)
-.setGroupname(namagc)
 .setMember(member)
 .toAttachment()
     
