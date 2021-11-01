@@ -202,6 +202,95 @@ var levelup = await new ch.Up()
          	res.json(loghandler.error)
 })
 })
+router.get('/gfx1', async (req, res) => {
+            nama = req.query.teks
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
+   
+var gfx1 = await new ch.Gfx1()
+    .setName(`${nama}`) 
+    .toAttachment();
+    
+  data = gfx1.toBuffer();
+  await fs.writeFileSync(__path +'/database/gfx1.png', data)
+  res.sendFile(__path +'/database/gfx1.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+
+router.get('/gfx2', async (req, res) => {
+        nama = req.query.teks
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
+   
+var image = await new ch.Gfx2()
+    .setName(`${nama}`) 
+    .toAttachment();
+    
+  data = image.toBuffer();
+  await fs.writeFileSync(__path +'/database/gfx2.png', data)
+  res.sendFile(__path +'/database/gfx2.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+router.get('/gfx3', async (req, res) => {
+            text1 = req.query.teks1,
+            text2 = req.query.teks2
+
+    if (!text1) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks1"})
+    if (!text2) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks2"})
+   
+var image = await new ch.Gfx3()
+    .setText1(`${text1}`) 
+    .setText2(`${text2}`)
+    .toAttachment();
+    
+  data = image.toBuffer();
+  await fs.writeFileSync(__path +'/database/gfx3.png', data)
+  res.sendFile(__path +'/database/gfx3.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+router.get('/gfx4', async (req, res) => {
+            text1 = req.query.teks1,
+            text2 = req.query.teks2
+
+    if (!text1) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks1"})
+    if (!text2) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks2"})
+   
+var image = await new ch.Gfx4()
+    .setText1(`${text1}`) 
+    .setText2(`${text2}`)
+    .toAttachment();
+    
+  data = image.toBuffer();
+  await fs.writeFileSync(__path +'/database/gfx4.png', data)
+  res.sendFile(__path +'/database/gfx4.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+router.get('/gfx5', async (req, res) => {
+            text = req.query.teks
+
+    if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
+   
+var image = await new ch.Gfx5()
+    .setText1(`${text}`) 
+    .toAttachment();
+    
+  data = image.toBuffer();
+  await fs.writeFileSync(__path +'/database/gfx4.png', data)
+  res.sendFile(__path +'/database/gfx4.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 router.get('/gura', async (req, res) => {
             teks = req.query.teks
     if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
