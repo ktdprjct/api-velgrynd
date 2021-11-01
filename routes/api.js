@@ -109,7 +109,53 @@ var gura = await new ch.Gura()
          	res.json(loghandler.error)
 })
 })
+router.get('/spongebob', async (req, res) => {
+        image = req.query.image
+    if (!image) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter image"})
+    
+var burn = await new ch.Burn()
+    .setAvatar(image)
+    .toAttachment();
+  
+  data = burn.toBuffer();
+  await fs.writeFileSync(__path +'/database/spongebob.png', data)
+  res.sendFile(__path +'/database/spongebob.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 
+router.get('/patrick', async (req, res) => {
+           image = req.query.image
+    if (!image) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter image"})
+    
+var patrick = await new ch.Patrick()
+    .setAvatar(image)
+    .toAttachment();
+  
+  data = patrick.toBuffer();
+  await fs.writeFileSync(__path +'/database/patrick.png', data)
+  res.sendFile(__path +'/database/patrick.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+router.get('/hacker1', async (req, res) => {
+            teks = req.query.teks
+    if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
+    
+var hacker1 = await new ch.Hacker1()
+    .setText(teks)
+    .toAttachment();
+  
+  data = hacker1.toBuffer();
+  await fs.writeFileSync(__path +'/database/hacker1.png', data)
+  res.sendFile(__path +'/database/hacker1.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
      // Downloader
     router.get('/tiktok', async(req, res) => {
 	      let url = req.query.url
