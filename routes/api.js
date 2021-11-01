@@ -15,6 +15,7 @@ let hxz = require('hxz-api')
 let nhentai = require('nhentai-js');
 let NanaAPI = require('nana-api')
 let ch = require('canvas-hikki')
+let kc = require('knights-canvas')
 let nana = new NanaAPI()
 let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl } = require('../lib/index') 
 let options = require(__path + '/lib/options.js');
@@ -96,6 +97,35 @@ let Goodbye = await new ch.Goodbye2()
          	res.json(loghandler.error)
 })
 })
+router.get('/promote', async (req, res) => {
+            pp = req.query.pp,
+            nama = req.query.nama,
+	    namagc = req.query.namagc,
+	    ppgc = req.query.ppgc,
+            bg = req.query.bg,
+            member = req.query.member
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+    if (!namagc) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter namagc"})
+    if (!ppgc) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter ppgc"})
+    if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
+    if (!member) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter member"})
+const Promote = await new kc.Promote()
+    .setAvatar(pp)
+    .setUsername(nama)
+    .setGuildName(namagc)
+    .setGuildIcon(ppgc)
+    .setBackground(bg)
+    .setMemberCount(member)
+    .toAttachment();
+    
+ data = Promote.toBuffer();
+  await fs.writeFileSync(__path +'/database/promote.png', data)
+  res.sendFile(__path+'/database/promote.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 router.get('/gura', async (req, res) => {
             teks = req.query.teks
     if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
@@ -136,22 +166,6 @@ var patrick = await new ch.Patrick()
   data = patrick.toBuffer();
   await fs.writeFileSync(__path +'/database/patrick.png', data)
   res.sendFile(__path +'/database/patrick.png')
-  .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-
-router.get('/hacker1', async (req, res) => {
-            teks = req.query.teks
-    if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
-    
-var hacker1 = await new ch.Hacker1()
-    .setText(teks)
-    .toAttachment();
-  
-  data = hacker1.toBuffer();
-  await fs.writeFileSync(__path +'/database/hacker1.png', data)
-  res.sendFile(__path +'/database/hacker1.png')
   .catch(e => {
          	res.json(loghandler.error)
 })
