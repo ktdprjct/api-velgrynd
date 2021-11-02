@@ -218,7 +218,6 @@ var gfx1 = await new ch.Gfx1()
 })
 })
 
-
 router.get('/gfx2', async (req, res) => {
         nama = req.query.teks
     if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
@@ -287,6 +286,45 @@ var image = await new ch.Gfx5()
   data = image.toBuffer();
   await fs.writeFileSync(__path +'/database/gfx4.png', data)
   res.sendFile(__path +'/database/gfx4.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+router.get('/canvas/customgfx', async (req, res) => {
+            text = req.query.teks,
+            bg = req.query.bg
+    if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
+     if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
+   
+var cgfx = await new ch.customGfx()
+    .setText(text)
+    .setBg(bg)
+    .toAttachment();
+    
+  data = cgfx.toBuffer();
+  await fs.writeFileSync(__path +'/database/cgfx.png', data)
+  res.sendFile(__path +'/database/cgfx.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+router.get('/customgfx2', async (req, res) => {
+            text1 = req.query.teks1,
+            text2 = req.query.teks2,
+            bg = req.query.bg
+    if (!text1) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks1"})
+    if (!text2) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks2"})
+   if (!bg) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter bg"})
+   
+var cgfx = await new ch.customGfx2()
+    .setText1(text1)
+    .setText2(text2)
+    .setBg(bg)
+    .toAttachment();
+    
+  data = cgfx.toBuffer();
+  await fs.writeFileSync(__path +'/database/cgfx2.png', data)
+  res.sendFile(__path +'/database/cgfx2.png')
   .catch(e => {
          	res.json(loghandler.error)
 })
