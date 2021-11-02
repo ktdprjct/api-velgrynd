@@ -45,7 +45,7 @@ loghandler = {
         message: 'An internal error occurred. Please report via WhatsApp wa.me/62895619083555'
     }
 }
-router.get('/welcome', async (req, res) => {
+router.get('/canvas/welcome', async (req, res) => {
             pp = req.query.pp,
             nama = req.query.nama,
             bg = req.query.bg,    
@@ -73,7 +73,7 @@ let Welcome = await new ch.Welcome2()
          	res.json(loghandler.error)
 })
 })
-router.get('/goodbye', async (req, res) => {
+router.get('/canvas/goodbye', async (req, res) => {
             pp = req.query.pp,
             nama = req.query.nama,
             bg = req.query.bg,    
@@ -97,7 +97,7 @@ let Goodbye = await new ch.Goodbye2()
          	res.json(loghandler.error)
 })
 })
-router.get('/promote', async (req, res) => {
+router.get('/canvas/promote', async (req, res) => {
             pp = req.query.pp,
             nama = req.query.nama,
 	    namagc = req.query.namagc,
@@ -126,7 +126,7 @@ const Promote = await new kc.Promote()
          	res.json(loghandler.error)
 })
 })
-router.get('/demote', async (req, res) => {
+router.get('/canvas/demote', async (req, res) => {
             pp = req.query.pp,
             nama = req.query.nama,
 	    namagc = req.query.namagc,
@@ -155,7 +155,7 @@ const Demote = await new kc.Demote()
          	res.json(loghandler.error)
 })
 })
-router.get('/level', async (req, res) => {
+router.get('/canvas/level', async (req, res) => {
             pp = req.query.pp,
             nama = req.query.nama,
             bg = req.query.bg,
@@ -189,7 +189,7 @@ var level = await new ch.Rank()
 })
 
 
-router.get('/levelup', async (req, res, next) => {
+router.get('/canvas/levelup', async (req, res, next) => {
             pp = req.query.pp
     if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})       
 var levelup = await new ch.Up()
@@ -202,7 +202,7 @@ var levelup = await new ch.Up()
          	res.json(loghandler.error)
 })
 })
-router.get('/gfx1', async (req, res) => {
+router.get('/canvas/gfx1', async (req, res) => {
             nama = req.query.teks
     if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
    
@@ -218,7 +218,7 @@ var gfx1 = await new ch.Gfx1()
 })
 })
 
-router.get('/gfx2', async (req, res) => {
+router.get('/canvas/gfx2', async (req, res) => {
         nama = req.query.teks
     if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
    
@@ -234,7 +234,7 @@ var image = await new ch.Gfx2()
 })
 })
 
-router.get('/gfx3', async (req, res) => {
+router.get('/canvas/gfx3', async (req, res) => {
             text1 = req.query.teks1,
             text2 = req.query.teks2
 
@@ -254,7 +254,7 @@ var image = await new ch.Gfx3()
 })
 })
 
-router.get('/gfx4', async (req, res) => {
+router.get('/canvas/gfx4', async (req, res) => {
             text1 = req.query.teks1,
             text2 = req.query.teks2
 
@@ -274,7 +274,7 @@ var image = await new ch.Gfx4()
 })
 })
 
-router.get('/gfx5', async (req, res) => {
+router.get('/canvas/gfx5', async (req, res) => {
             text = req.query.teks
 
     if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
@@ -308,7 +308,7 @@ var cgfx = await new ch.customGfx()
          	res.json(loghandler.error)
 })
 })
-router.get('/customgfx2', async (req, res) => {
+router.get('/canvas/customgfx2', async (req, res) => {
             text1 = req.query.teks1,
             text2 = req.query.teks2,
             bg = req.query.bg
@@ -329,7 +329,7 @@ var cgfx = await new ch.customGfx2()
          	res.json(loghandler.error)
 })
 })
-router.get('/gura', async (req, res) => {
+router.get('/canvas/gura', async (req, res) => {
             teks = req.query.teks
     if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
 var gura = await new ch.Gura()
@@ -342,7 +342,7 @@ var gura = await new ch.Gura()
          	res.json(loghandler.error)
 })
 })
-router.get('/spongebob', async (req, res) => {
+router.get('/canvas/spongebob', async (req, res) => {
         image = req.query.image
     if (!image) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter image"})
     
@@ -358,7 +358,7 @@ var burn = await new ch.Burn()
 })
 })
 
-router.get('/patrick', async (req, res) => {
+router.get('/canvas/patrick', async (req, res) => {
            image = req.query.image
     if (!image) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter image"})
     
@@ -369,6 +369,31 @@ var patrick = await new ch.Patrick()
   data = patrick.toBuffer();
   await fs.writeFileSync(__path +'/database/patrick.png', data)
   res.sendFile(__path +'/database/patrick.png')
+  .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+router.get('/canvas/instagram', async (req, res) => {
+    pp = req.query.pp,
+    username = req.query.username,
+	    post = req.query.post,
+	    followers = req.query.followers,
+	    following = req.query.following,
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!username) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter username"})
+    if (!post) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter post"})
+    if (!followers) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter followers"})
+    if (!following) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter following"})
+var Ig = await new ch.Ig()
+    .setAvatar(pp)
+    .setUsername(username)
+    .setPost(post)
+    .setFollowers(followers)
+    .setFollowing(following)
+    .toAttachment();
+  data = Ig.toBuffer();
+  await fs.writeFileSync(__path +'/database/instagram.png', data)
+  res.sendFile(__path +'/database/instagram.png')
   .catch(e => {
          	res.json(loghandler.error)
 })
