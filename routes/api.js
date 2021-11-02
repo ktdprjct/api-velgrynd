@@ -398,6 +398,22 @@ var Ig = await new ch.Ig()
             res.json(loghandler.error)
 })
 })
+router.get('/canvas/xnxx', async (req, res) => {
+    pp = req.query.pp,
+    username = req.query.username
+    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
+    if (!username) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter username"})
+    var Xnxx = await new ch.Xnxx()
+    .setImage(pp)
+    .setTitle(username)
+    .toAttachment();
+  data = Xnxx.toBuffer();
+  await fs.writeFileSync(__path +'/database/xnxx.png', data)
+  res.sendFile(__path +'/database/xnxx.png')
+  .catch(e => {
+            res.json(loghandler.error)
+})
+})
      // Downloader
     router.get('/tiktok', async(req, res) => {
 	      let url = req.query.url
