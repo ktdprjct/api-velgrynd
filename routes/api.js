@@ -373,31 +373,7 @@ var patrick = await new ch.Patrick()
          	res.json(loghandler.error)
 })
 })
-router.get('/canvas/instagram', async (req, res) => {
-    pp = req.query.pp,
-    username = req.query.username,
-	    post = req.query.post,
-	    followers = req.query.followers,
-	    following = req.query.following,
-    if (!pp) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pp"})
-    if (!username) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter username"})
-    if (!post) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter post"})
-    if (!followers) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter followers"})
-    if (!following) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter following"})
-var Ig = await new ch.Ig()
-    .setAvatar(pp)
-    .setUsername(username)
-    .setPost(post)
-    .setFollowers(followers)
-    .setFollowing(following)
-    .toAttachment();
-  data = Ig.toBuffer();
-  await fs.writeFileSync(__path +'/database/instagram.png', data)
-  res.sendFile(__path +'/database/instagram.png')
-  .catch(e => {
-         	res.json(loghandler.error)
-})
-})
+
      // Downloader
     router.get('/tiktok', async(req, res) => {
 	      let url = req.query.url
