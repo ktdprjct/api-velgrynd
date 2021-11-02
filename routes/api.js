@@ -290,7 +290,7 @@ var image = await new ch.Gfx5()
          	res.json(loghandler.error)
 })
 })
-router.get('/canvas/customgfx', async (req, res) => {
+router.get('/canvas/customgfx1', async (req, res) => {
             text = req.query.teks,
             bg = req.query.bg
     if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
