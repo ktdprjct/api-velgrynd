@@ -10,6 +10,8 @@ router.get('/', (req, res) => {
 router.get('/about', (req, res) => {
     res.sendFile(__path + '/views/about.html')
 })
-
+router.get('/test', (req, res) => {
+    res.sendFile(__path + '/views/test.html')
+})
 
 module.exports = router
