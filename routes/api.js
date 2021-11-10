@@ -543,38 +543,7 @@ res.json({
            })
        })
    })
-router.get('/nulis', async (req, res) => {
-            text = req.query.text
-    if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})
 
-       fetch(encodeURI(`http://salism3.pythonanywhere.com/write/?text=${text}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 status: 200,
-                 creator: creator,
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-         // Animanga
-         router.get('/nhentai', async (req, res, next) => {
-             code = req.query.code
-             if(!code) return res.json({ message: 'masukan parameter Code' })
-             result = await nhentai.getDoujin(code)
-             res.json({
-                  status: 200,
-                  creator: `${creator}`,
-                  result
-             })
-            .catch(e => {
-            	res.json(loghandler.error)
-           })
-      })
       router.get('/nHentaiSearch', async (req, res) => {
             let query = req.query.query
             let hasil = await nana.search(query)
