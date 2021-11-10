@@ -430,7 +430,7 @@ router.get('/canvas/xnxx', async (req, res) => {
 		    res.json(loghandler.error)
 	     }
     })
-router.get('/api/telesticker', async(req, res) => {
+router.get('/telesticker', async(req, res) => {
   try {
 	      let url = req.query.url
 	      if (!url) return res.json(loghandler.noturl)
