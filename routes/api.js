@@ -446,11 +446,11 @@ let packName = url.replace("https://t.me/addstickers/", "")
         let gasIn = await fetch(`https://api.telegram.org/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/getFile?file_id=${fileId}`)
 
         let jisin = await gasIn.json()
-    }
-  res.json({
-    url: "https://api.telegram.org/file/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/" + jisin.result.file_path
-  })
     
+  res.json(
+    "https://api.telegram.org/file/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/" + jisin.result.file_path
+  )
+    }
     })
     router.get('/igdl', async(req, res) => {
 	     let url = req.query.url
