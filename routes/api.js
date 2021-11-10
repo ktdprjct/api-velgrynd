@@ -18,7 +18,6 @@ let ch = require('canvas-hikki')
 let kc = require('knights-canvas')
 let nana = new NanaAPI()
 let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl } = require('../lib/index')
-let {anime} = require(__path + '/lib/scraper/anime.js')
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
 let { getBuffer, fetchJson } = require(__path + '/lib/fetcher.js');
@@ -517,28 +516,7 @@ res.json({
 		      res.json(loghandler.error)
 	       }
      })
-router.get('/anime', async(req, res) => {
-	     query = req.query.query
-	     if (!query) return res.jso(loghandler.notquery)
-data = await anime(query)
-res.json(data)
-      })
-     router.get('/pindl', async(req, res) => {
-	     let url = req.query.url
-	     if (!url) return res.json(loghandler.noturl)
-	     let result = await pinterestdl(url)
-	     try {
-	     res.json({
-			  status: 200,
-			  creator: `${creator}`,
-              result
-          })
-	    } catch(err) {
-		      console.log(err)
-		      res.json(loghandler.error)
-	       }
-      })
-      
+
       // Searching
       router.get('/pinterest', async(req, res) => {
 	      let query = req.query.query
@@ -565,6 +543,24 @@ res.json(data)
            })
        })
    })
+router.get('/nulis', async (req, res) => {
+            text = req.query.text
+    if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})
+
+       fetch(encodeURI(`http://salism3.pythonanywhere.com/write/?text=${text}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 status: 200,
+                 creator: creator,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
          // Animanga
          router.get('/nhentai', async (req, res, next) => {
              code = req.query.code
