@@ -449,8 +449,13 @@ let packName = url.replace("https://t.me/addstickers/", "")
    result.push("https://api.telegram.org/file/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/" + jisin.result.file_path)
   
     }
-res.json(result)
+res.json({
+  status: 200,
+  creator: creator,
+  result: result
+})
     })
+    
     router.get('/igdl', async(req, res) => {
 	     let url = req.query.url
 	     if (!url) return res.json(loghandler.noturl)
@@ -511,6 +516,35 @@ res.json(result)
 		      res.json(loghandler.error)
 	       }
      })
+router.get('/anime', async(req, res) => {
+	     query = req.query.query
+	     if (!query) return res.json(loghandler.notquery)
+const anime = (q) => {
+	return new Promise((resolve, reject) => {
+		axios.get(`https://www.anime-planet.com/anime/all?name=${q}`)
+			.then(({
+				data
+			}) => {
+				const hasil = []
+				const $ = cheerio.load(data)
+				$('#siteContainer > ul.cardDeck.cardGrid > li ').each(function (a, b) {
+                        result = {
+                          status: 200,
+                        	creator: creator,
+                            judul: $(b).find('> a > h3').text(),
+                            link: 'https://www.anime-planet.com' + $(b).find('> a').attr('href'),
+                            thumbnail: 'https://www.anime-planet.com' + $(b).find('> a > div.crop > img').attr('src')
+};
+                        hasil.push(result);
+                    });
+				resolve(hasil)
+			})
+			.catch(reject)
+	})
+}
+data = await anime(query)
+res.json(data)
+      })
      router.get('/pindl', async(req, res) => {
 	     let url = req.query.url
 	     if (!url) return res.json(loghandler.noturl)
