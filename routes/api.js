@@ -17,7 +17,7 @@ let NanaAPI = require('nana-api')
 let ch = require('canvas-hikki')
 let kc = require('knights-canvas')
 let nana = new NanaAPI()
-let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl } = require('../lib/index') 
+let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl, anime } = require('../lib/index') 
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
 let { getBuffer, fetchJson } = require(__path + '/lib/fetcher.js');
@@ -519,29 +519,6 @@ res.json({
 router.get('/anime', async(req, res) => {
 	     query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
-const anime = (q) => {
-	return new Promise((resolve, reject) => {
-		axios.get(`https://www.anime-planet.com/anime/all?name=${q}`)
-			.then(({
-				data
-			}) => {
-				const hasil = []
-				const $ = cheerio.load(data)
-				$('#siteContainer > ul.cardDeck.cardGrid > li ').each(function (a, b) {
-                        result = {
-                          status: 200,
-                        	creator: creator,
-                            judul: $(b).find('> a > h3').text(),
-                            link: 'https://www.anime-planet.com' + $(b).find('> a').attr('href'),
-                            thumbnail: 'https://www.anime-planet.com' + $(b).find('> a > div.crop > img').attr('src')
-};
-                        hasil.push(result);
-                    });
-				resolve(hasil)
-			})
-			.catch(reject)
-	})
-}
 data = await anime(query)
 res.json(data)
       })
