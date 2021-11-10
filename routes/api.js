@@ -528,13 +528,23 @@ res.json({
                result 
            })
       })
-router.get('/asupan', async(req, res) => {
-data = fs.readFileSync('./lib/asupan.json');
-					jsonData = JSON.parse(data);
-					randIndex = Math.floor(Math.random() * jsonData.length);
-					randKey = jsonData[randIndex];
-					res.json(randKey)
-      })
+router.get('/asupan', async (req, res) => {
+     
+       fetch(encodeURI(`https://raw.githubusercontent.com/binjaicity/warga62/master/asupan.js`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+        var result = data[Math.floor(Math.random() * data.length)];
+             res.json({
+              status: 200,
+             	creator: creator,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
       router.get('/google', async (req, res, next) => {
 	      let query = req.query.query
 	      if (!query) return res.json(loghandler.notquery)
