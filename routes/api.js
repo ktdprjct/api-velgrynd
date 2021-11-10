@@ -439,18 +439,17 @@ let packName = url.replace("https://t.me/addstickers/", "")
     if (!gas.ok) throw eror
 
     let json = await gas.json()
-    
+    const result = []
     for (let i = 0; i < json.result.stickers.length; i++) {
         let fileId = json.result.stickers[i].thumb.file_id
 
         let gasIn = await fetch(`https://api.telegram.org/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/getFile?file_id=${fileId}`)
 
         let jisin = await gasIn.json()
-    
-  res.json(
-    "https://api.telegram.org/file/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/" + jisin.result.file_path
-  )
+   result.push("https://api.telegram.org/file/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/" + jisin.result.file_path)
+  
     }
+res.json(result)
     })
     router.get('/igdl', async(req, res) => {
 	     let url = req.query.url
