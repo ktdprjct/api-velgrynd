@@ -17,7 +17,8 @@ let NanaAPI = require('nana-api')
 let ch = require('canvas-hikki')
 let kc = require('knights-canvas')
 let nana = new NanaAPI()
-let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl, anime } = require('../lib/index') 
+let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl } = require('../lib/index')
+let {anime} = require(__path + '/lib/scraper/anime.js')
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
 let { getBuffer, fetchJson } = require(__path + '/lib/fetcher.js');
@@ -518,7 +519,7 @@ res.json({
      })
 router.get('/anime', async(req, res) => {
 	     query = req.query.query
-	     if (!query) return res.json(loghandler.notquery)
+	     if (!query) return res.jso(loghandler.notquery)
 data = await anime(query)
 res.json(data)
       })
