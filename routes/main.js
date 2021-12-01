@@ -12,6 +12,9 @@ router.get('/docs', (req, res) => {
 router.get('/about', (req, res) => {
     res.sendFile(__path + '/views/about.html')
 })
+router.get('/ttt', (req, res) => {
+    res.sendFile(__path + '/views/tictactoe.php')
+})
 router.get('/test', (req, res) => {
     res.sendFile(__path + '/views/test.html')
 })
